@@ -163,7 +163,7 @@ class OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
     if SiteSetting.oauth2_fetch_user_details?
       if fetched_user_details = fetch_user_details(auth['credentials']['token'], auth['uid'])
         auth['uid'] = fetched_user_details[:user_id] if fetched_user_details[:user_id]
-        auth['info']['nickname'] = fetched_user_details[:username] if fetched_user_details[:username]
+        auth['info']['nickname'] = fetched_user_details[:nickname] if fetched_user_details[:nickname]
         auth['info']['image'] = fetched_user_details[:avatar] if fetched_user_details[:avatar]
         ['name', 'email', 'email_verified'].each do |property|
           auth['info'][property] = fetched_user_details[property.to_sym] if fetched_user_details[property.to_sym]
